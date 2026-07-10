@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  ms-ra-forwarder:
+    container_name: ms-ra-forwarder
+    image: wxxxcxx/ms-ra-forwarder:latest
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      # 可选：设置后需要在请求头里带 Authorization: Bearer <TOKEN>
+      - TOKEN=
+

@@ -1,0 +1,68 @@
+---
+config:
+  flowchart:
+    curve: linear
+    nodeSpacing: 60
+    rankSpacing: 80
+---
+graph TB;
+	__start__([<p>__start__</p>]):::first
+	start_hot_fetch(开始抓取热点)
+	fetch_weibo_hot(获取微博热搜)
+	fetch_douyin_hot(获取抖音热榜)
+	wait_hot_sources(等待热点源齐备)
+	aggregate_hot_titles(聚合热榜与候选)
+	pick_hotspot_llm(AI 选择唯一热点)
+	check_hotspot_db(数据库去重)
+	write_hotspot_db(写入热点数据库)
+	search_articles(搜索文章素材)
+	aggregate_article_text(聚合文章正文)
+	infer_account_topics_and_generate_proposals(生成选题并排名)
+	send_feishu_card_and_wait_selection(飞书发卡片并等待选择)
+	send_feishu_final_script(send_feishu_final_script<hr/><small><em>label_zh = 发送终版脚本到飞书</em></small>)
+	prepare_selected_topic_materials(prepare_selected_topic_materials<hr/><small><em>label_zh = 按已选题目重建素材任务</em></small>)
+	search_articles_selected(search_articles_selected<hr/><small><em>label_zh = 按选题搜索文章素材</em></small>)
+	llm_filter_articles_selected(llm_filter_articles_selected<hr/><small><em>label_zh = 按选题筛选文章候选</em></small>)
+	fetch_article_contents_selected(fetch_article_contents_selected<hr/><small><em>label_zh = 抓取文章正文(按选题)</em></small>)
+	search_videos_selected(search_videos_selected<hr/><small><em>label_zh = 按选题搜索视频素材</em></small>)
+	llm_filter_videos_selected(llm_filter_videos_selected<hr/><small><em>label_zh = 按选题筛选视频候选</em></small>)
+	download_subtitles_bbdown_selected(download_subtitles_bbdown_selected<hr/><small><em>label_zh = BBDown 下载字幕(按选题)</em></small>)
+	aggregate_keyword_materials_selected(aggregate_keyword_materials_selected<hr/><small><em>label_zh = 按选题聚合关键词资料(文章+视频)</em></small>)
+	summarize_keyword_materials_selected(summarize_keyword_materials_selected<hr/><small><em>label_zh = AI 提炼关键词资料</em></small>)
+	final_script(生成终版脚本)
+	storyboard_segments(storyboard_segments<hr/><small><em>label_zh = 分镜切段</em></small>)
+	storyboard_visuals(storyboard_visuals<hr/><small><em>label_zh = 补全画面提示</em></small>)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> start_hot_fetch;
+	aggregate_article_text --> infer_account_topics_and_generate_proposals;
+	aggregate_hot_titles --> pick_hotspot_llm;
+	aggregate_keyword_materials_selected --> summarize_keyword_materials_selected;
+	check_hotspot_db -.-> pick_hotspot_llm;
+	check_hotspot_db -.-> write_hotspot_db;
+	download_subtitles_bbdown_selected --> aggregate_keyword_materials_selected;
+	fetch_article_contents_selected --> aggregate_keyword_materials_selected;
+	fetch_douyin_hot --> wait_hot_sources;
+	fetch_weibo_hot --> wait_hot_sources;
+	final_script --> send_feishu_final_script;
+	infer_account_topics_and_generate_proposals --> send_feishu_card_and_wait_selection;
+	llm_filter_articles_selected --> fetch_article_contents_selected;
+	llm_filter_videos_selected --> download_subtitles_bbdown_selected;
+	pick_hotspot_llm --> check_hotspot_db;
+	prepare_selected_topic_materials --> search_articles_selected;
+	prepare_selected_topic_materials --> search_videos_selected;
+	search_articles --> aggregate_article_text;
+	search_articles_selected --> llm_filter_articles_selected;
+	search_videos_selected --> llm_filter_videos_selected;
+	send_feishu_card_and_wait_selection --> prepare_selected_topic_materials;
+	send_feishu_final_script --> storyboard_segments;
+	start_hot_fetch --> fetch_douyin_hot;
+	start_hot_fetch --> fetch_weibo_hot;
+	storyboard_segments --> storyboard_visuals;
+	summarize_keyword_materials_selected --> final_script;
+	wait_hot_sources -.-> aggregate_hot_titles;
+	write_hotspot_db --> search_articles;
+	storyboard_visuals --> __end__;
+	wait_hot_sources -.-> wait_hot_sources;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

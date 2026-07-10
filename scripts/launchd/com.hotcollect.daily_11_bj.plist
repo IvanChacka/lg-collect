@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="1.0"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.hotcollect.daily_11_bj</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>/bin/bash</string>
+      <string>-lc</string>
+      <string>cd /Users/mima0000/Desktop/hot_collect &amp;&amp; mkdir -p .data/logs &amp;&amp; exec python scripts/trigger_daily_run.py</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+      <key>Hour</key>
+      <integer>11</integer>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/mima0000/Desktop/hot_collect</string>
+
+    <key>StandardOutPath</key>
+    <string>/Users/mima0000/Desktop/hot_collect/.data/logs/daily_11.stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/mima0000/Desktop/hot_collect/.data/logs/daily_11.stderr.log</string>
+  </dict>
+</plist>
+

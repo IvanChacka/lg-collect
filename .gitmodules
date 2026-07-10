@@ -1,0 +1,12 @@
+[submodule "vendor/BBDown"]
+	path = vendor/BBDown
+	url = https://github.com/nilaoda/BBDown
+[submodule "vendor/BiliBiliCCSubtitle"]
+	path = vendor/BiliBiliCCSubtitle
+	url = https://gitcode.com/gh_mirrors/bi/BiliBiliCCSubtitle.git
+[submodule "vendor/bilibili-video-downloader"]
+	path = vendor/bilibili-video-downloader
+	url = https://github.com/lanyeeee/bilibili-video-downloader
+[submodule "vendor/ms-ra-forwarder"]
+	path = vendor/ms-ra-forwarder
+	url = https://github.com/wxxxcxx/ms-ra-forwarder

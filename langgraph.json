@@ -1,0 +1,9 @@
+{
+  "dependencies": [
+    "."
+  ],
+  "graphs": {
+    "hot_collect": "./studio_graph.py:graph"
+  },
+  "env": "./.env"
+}
